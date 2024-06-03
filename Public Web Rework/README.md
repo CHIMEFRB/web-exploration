@@ -10,6 +10,8 @@
 
 ## Tech Stack #1:
 
+[Implementation: public-web-vue](https://github.com/CHIMEFRB/web-exploration/tree/main/Public%20Web%20Rework/public-web-vue)
+
 - **Runtime:** Bun.js
 - **Language:** TypeScript
 - **Build tool:** Vite
