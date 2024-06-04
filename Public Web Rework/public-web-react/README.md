@@ -1,16 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# public-web with Bun, React 19 (Next.js 15), TypeScript, Tailwind & GitHub Primer / Ant Design
 
-## Getting Started
+<details >
+<summary>Setup</summary>
+
+### Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
 ```
 
@@ -19,16 +16,37 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Learn More
+- [Next.js Documentation](https://nextjs.org/docs)
+</details>
 
-To learn more about Next.js, take a look at the following resources:
+**Time Spent Coding (setup to finish)**: 3.5 hours.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Extra time spent trying to make Primer Design work properly with React 19, other than that it was smooth sailing.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Event Page Design:
+<div style="text-align: center;">
+  <img src="./git-assets/public-web-react.png" alt="Sample Image" style="max-width: 100%; height: auto;"/>
+</div>
 
-## Deploy on Vercel
+### Findings:
+- Setup was quick, straightforward and easy.
+- React 19 Compiler is buggy with Next.js 15, as of yet.
+- Much more fine-grained control over everything compared to Vue/Nuxt 3.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Primer Design to Ant Design `antd`:
+- GitHub Primer Design as a component library is **not** a viable.
+    - *Most* of the components are experimental/buggy.
+    - It outright does not work with React 19. Max supported is React 18.
+    - Out of all the components in it, only 2-3 are in "beta" (usable).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> I substituted to [Ant Design System](https://ant.design/).
+
+#### Thoughts on Ant Design:
+- Has pretty much everything we would need, plus more with the pro version.
+- Tailwind support is very bad. If we opt for this, SCSS is the way to go for custom styles.
+- Works OK with React 19 RC.
+
+> Further alternatives could be Material UI, or our own component library with [Shadcn/ui](https://ui.shadcn.com/).
+
+### Conclusions:
+For public-web, the development would definitely be faster/more straightforward with the Vue Stack. However, for bigger codebases React might be the wiser choice.
