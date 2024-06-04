@@ -39,6 +39,8 @@ With this stack, we can use the following component libraries:
 
 ## Tech Stack #2:
 
+[Implementation: public-web-react](https://github.com/CHIMEFRB/web-exploration/tree/main/Public%20Web%20Rework/public-web-react)
+
 - **Runtime:** Bun.js
 - **Language:** TypeScript
 - **Build tool:** Vite
