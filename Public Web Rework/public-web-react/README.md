@@ -34,7 +34,7 @@ Extra time spent trying to make Primer Design work properly with React 19, other
 - Much more fine-grained control over everything compared to Vue/Nuxt 3.
 
 #### Primer Design to Ant Design `antd`:
-- GitHub Primer Design as a component library is **not** a viable.
+- GitHub Primer Design as a component library is **not** a viable option.
     - *Most* of the components are experimental/buggy.
     - It outright does not work with React 19. Max supported is React 18.
     - Out of all the components in it, only 2-3 are in "beta" (usable).
