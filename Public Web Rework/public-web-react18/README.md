@@ -17,6 +17,11 @@
 - Primer is mainly CSS-in-JS, using `styled-components`.
 - A lot of key components are not completed yet, like `DataTable` and `Image`.
 - No support for SSR/Next.js. Vanilla React 18 only.
+- If we go with Primer, we would sacrifice features like:
+    - Meta frameworks like Next.js and their features.
+    - React Server Components
+    - Optimized image delivery formats (e.g. `.webp`)
+    - SSR alltogether.
 
 ### Conclusions:
 While Primer Design System's philosophy is great and intuitive, its React implementation is not mature enough to be used in production.
