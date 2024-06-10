@@ -48,7 +48,7 @@
         </div>
       </div>
       <div
-        class="container mx-auto flex justify-center items-center text-center"
+        class="container mx-auto max-w-xl flex justify-center items-center text-center"
       >
         <Table>
           <TableHeader>
@@ -121,7 +121,7 @@
         </div>
       </div>
       <div
-        class="container mx-auto flex justify-center items-center text-center"
+        class="container max-w-xl mx-auto flex justify-center items-center text-center"
       >
         <Table>
           <TableHeader>
@@ -195,3 +195,4 @@
     <Footer />
   </div>
 </template>
+
