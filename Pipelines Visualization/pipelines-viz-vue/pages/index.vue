@@ -1,9 +1,11 @@
 <template>
     <div>
         <h1 class="text-4xl font-bold tracking-wide">Pipelines Visualization</h1>
-        <p class="pt-2">Nuxt 3 + PrimeVue + Tailwind</p>
-        <Button class="p-0 mt-4" @click="addEvent">Add Event</Button>
-        <div class="container mt-8 pt-16 pb-0 mx-auto border">
+        <p class="pt-2 italic">Nuxt 3 + PrimeVue + Tailwind</p>
+        <div class="container mt-8 pt-10 pb-0 mx-auto border">
+            <h3 class="text-3xl font-thin uppercase tracking-tighter">Timeline</h3>
+            <Button class="my-6 mb-8" size="small" @click="addEvent" rounded outlined label="Add Event"
+                icon="pi pi-plus" />
             <Timeline :value="timelineEvents" align="left" class="customized-timeline">
                 <template #marker="slotProps">
                     <span

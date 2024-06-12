@@ -18,6 +18,10 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        mono: ["Inconsolata", "monospace"],
+      },
       colors: {
         primary: "rgb(var(--primary))",
         "primary-inverse": "rgb(var(--primary-inverse))",
