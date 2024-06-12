@@ -1,7 +1,7 @@
 export default {
     root: ({ props }) => ({
         class: [
-            'flex grow animate-fade-in-down',
+            'flex grow',
             {
                 'flex-col': props.layout === 'vertical',
                 'flex-row flex-1': props.layout === 'horizontal'
@@ -10,7 +10,7 @@ export default {
     }),
     event: ({ props, context }) => ({
         class: [
-            'flex relative min-h-[110px]',
+            'flex relative min-h-[110px] animate-timeline-node-fade-down',
             {
                 'flex-row-reverse': props.align === 'right' || (props.layout === 'vertical' && props.align === 'alternate' && context.index % 2 === 1),
                 'flex-col flex-1': props.layout === 'horizontal',
@@ -54,7 +54,7 @@ export default {
     },
     connector: ({ props }) => ({
         class: [
-            'grow bg-surface-300 dark:bg-surface-700',
+            'grow bg-surface-300 dark:bg-gray-500',
             {
                 'w-[2px]': props.layout === 'vertical',
                 'w-full h-[2px]': props.layout === 'horizontal'
