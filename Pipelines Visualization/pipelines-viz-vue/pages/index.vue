@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h1 class="text-4xl font-bold tracking-wide">Pipelines Visualization</h1>
+        <h1 class="text-4xl mt-8 font-bold tracking-wide">Pipelines Visualization</h1>
         <p class="pt-2 italic">Nuxt 3 + PrimeVue + Tailwind</p>
         <div class="container mt-8 pt-10 pb-0 mx-auto border" :class="{ 'dark bg-gray-700': darkMode }">
-            <h3 class="text-3xl font-thin uppercase tracking-tighter dark:text-white">Timeline</h3>
+            <h3 class="text-3xl font-thin uppercase tracking-tighter dark:text-white">
+                Timeline
+            </h3>
             <div class="container flex justify-center align-center mt-6 mb-8">
-                <Button class="" size="small" @click="addEvent" label="Add Event"
-                    icon="pi pi-plus" />
+                <Button class="" size="small" @click="addEvent" label="Add Event" icon="pi pi-plus" />
                 <ToggleButton v-model="darkMode" class="mx-4" on-icon="pi pi-sun" off-icon="pi pi-moon"
                     on-label="Light Mode" off-label="Dark Mode" />
             </div>
@@ -19,41 +20,106 @@
                     </span>
                 </template>
                 <template #opposite="slotProps">
-                    <small class="text-surface-600 dark:text-surface-0/70">{{ slotProps.item.date }}</small>
+                    <small class="text-surface-600 dark:text-surface-0/70">{{
+                        slotProps.item.date
+                        }}</small>
                 </template>
                 <template #content="slotProps">
-                    <p class="font-mono bg-zinc-200 inline p-1 rounded">someFunction();</p>
+                    <p class="font-mono bg-zinc-200 inline p-1 rounded">
+                        someFunction();
+                    </p>
                     <p class="text-black dark:text-white">{{ slotProps.item.status }}</p>
                 </template>
             </Timeline>
+        </div>
+        <div class="container mt-8 pt-10 pb-0 mx-auto border" :class="{ 'dark bg-gray-700': darkMode }">
+            <h3 class="text-3xl font-thin uppercase tracking-tighter dark:text-white">
+                Tree
+            </h3>
+            <div class="container flex justify-center align-center mt-6 mb-8">
+                <div class="card overflow-x-auto">
+                    <OrganizationChart :value="treeEvents">
+                        <template #default="slotProps">
+                            <i :class="slotProps.node.icon"></i>
+                            <span>{{ slotProps.node.label }}</span>
+                        </template>
+                    </OrganizationChart>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 useHead({
-    title: 'Pipelines Visualization',
+    title: "Pipelines Visualization",
     meta: [
-        { name: 'description', content: 'Pipelines Visualization with Nuxt 3, PrimeVue, and Tailwind' }
-    ]
+        {
+            name: "description",
+            content: "Pipelines Visualization with Nuxt 3, PrimeVue, and Tailwind",
+        },
+    ],
 });
 
 let darkMode = ref(false);
 
-let timelineEvents = ref(
-    [
-        { status: 'Queued', date: '2021-01-01', icon: "pi pi-spin pi-spinner", color: 'bg-yellow-500' },
-        { status: 'Running', date: '2021-01-02', icon: "pi pi-spin pi-cog", color: 'bg-blue-500' },
-        { status: 'Successful', date: '2021-01-03', icon: "pi pi-check", color: 'bg-green-500' },
-        { status: 'Failed', date: '2021-01-04', icon: "pi pi-times", color: 'bg-red-500' }
-    ]);
+const treeEvents = ref({
+    label: "Config",
+    icon: "pi pi-wrench",
+    children: [
+        {
+            label: "someFunction()",
+            icon: "pi pi-cog",
+            children: [
+                {
+                    label: "Queued",
+                    icon: "pi pi-cog",
+                    children: [
+                        {
+                            label: "Running",
+                            icon: "pi pi-cog",
+                            children: [{ label: "Successful" }, { label: "Failed" }],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+});
+
+let timelineEvents = ref([
+    {
+        status: "Queued",
+        date: "2021-01-01",
+        icon: "pi pi-spin pi-spinner",
+        color: "bg-yellow-500",
+    },
+    {
+        status: "Running",
+        date: "2021-01-02",
+        icon: "pi pi-spin pi-cog",
+        color: "bg-blue-500",
+    },
+    {
+        status: "Successful",
+        date: "2021-01-03",
+        icon: "pi pi-check",
+        color: "bg-green-500",
+    },
+    {
+        status: "Failed",
+        date: "2021-01-04",
+        icon: "pi pi-times",
+        color: "bg-red-500",
+    },
+]);
 
 function addEvent() {
     timelineEvents.value.push({
-        status: 'New Event',
-        date: new Date().toISOString().split('T')[0],
+        status: "New Event",
+        date: new Date().toISOString().split("T")[0],
         icon: "pi pi-star",
-        color: 'bg-purple-500'
+        color: "bg-purple-500",
     });
 }
 </script>
