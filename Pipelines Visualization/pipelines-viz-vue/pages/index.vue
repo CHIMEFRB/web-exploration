@@ -2,16 +2,16 @@
     <div>
         <h1 class="text-4xl mt-8 font-bold tracking-wide">Pipelines Visualization</h1>
         <p class="pt-2 italic">Nuxt 3 + PrimeVue + Tailwind</p>
+        <ToggleButton v-model="darkMode" class="m-3" on-icon="pi pi-sun" off-icon="pi pi-moon" on-label="Light Mode"
+            off-label="Dark Mode" />
         <div class="container mt-8 pt-10 pb-0 mx-auto border" :class="{ 'dark bg-gray-700': darkMode }">
             <h3 class="text-3xl font-thin uppercase tracking-tighter dark:text-white">
                 Timeline
             </h3>
             <div class="container flex justify-center align-center mt-6 mb-8">
                 <Button class="" size="small" @click="addEvent" label="Add Event" icon="pi pi-plus" />
-                <ToggleButton v-model="darkMode" class="mx-4" on-icon="pi pi-sun" off-icon="pi pi-moon"
-                    on-label="Light Mode" off-label="Dark Mode" />
             </div>
-            <Timeline :value="timelineEvents" align="left">
+            <Timeline :value="timelineEvents" align="left" class="mt-10">
                 <template #marker="slotProps">
                     <span
                         class="flex w-[2rem] h-[2rem] items-center justify-center text-white rounded-full z-20 shadow-sm"
@@ -38,10 +38,13 @@
             </h3>
             <div class="container flex justify-center align-center mt-6 mb-8">
                 <div class="card overflow-x-auto">
-                    <OrganizationChart :value="treeEvents">
+                    <OrganizationChart :value="treeEvents" collapsible>
                         <template #default="slotProps">
-                            <i :class="slotProps.node.icon"></i>
-                            <span>{{ slotProps.node.label }}</span>
+                            <div class="flex flex-col gap-2 items-center">
+                                <i class="text-xl" :class="slotProps.node.data.icon"></i>
+                                <p class="font-mono">{{ slotProps.node.data.function }}</p>
+                                <p v-if="slotProps.node.data.status"> {{ slotProps.node.data.status }}</p>
+                            </div>
                         </template>
                     </OrganizationChart>
                 </div>
@@ -51,6 +54,8 @@
 </template>
 
 <script setup lang="ts">
+import type { OrganizationChartNode } from 'primevue/organizationchart';
+
 useHead({
     title: "Pipelines Visualization",
     meta: [
@@ -63,22 +68,79 @@ useHead({
 
 let darkMode = ref(false);
 
-const treeEvents = ref({
-    label: "Config",
-    icon: "pi pi-wrench",
+const treeEvents = ref<OrganizationChartNode>({
+    key: "1",
+    data: {
+        function: "config_name",
+        icon: "pi pi-wrench text-gray-500",
+    },
     children: [
         {
-            label: "someFunction()",
-            icon: "pi pi-cog",
+            key: "1.1",
+            data: {
+                function: "someFunction()",
+                status: "Queued",
+                icon: "pi pi-spinner pi-spin text-yellow-500",
+            },
             children: [
                 {
-                    label: "Queued",
-                    icon: "pi pi-cog",
+                    key: "1.1.1",
+                    data: {
+                        function: "someFunction()",
+                        status: "Running",
+                        icon: "pi pi-cog pi-spin text-blue-500",
+                    },
                     children: [
                         {
-                            label: "Running",
-                            icon: "pi pi-cog",
-                            children: [{ label: "Successful" }, { label: "Failed" }],
+                            key: "1.1.1.1",
+                            data: {
+                                function: "someFunction()",
+                                status: "Successful",
+                                icon: "pi pi-check text-green-500",
+                            },
+                        },
+                    ],
+                },
+                {
+                    key: "1.1.1",
+                    data: {
+                        function: "someFunction()",
+                        status: "Running",
+                        icon: "pi pi-cog pi-spin text-blue-500",
+                    },
+                    children: [
+                        {
+                            key: "1.1.1.1",
+                            data: {
+                                function: "someFunction()",
+                                status: "Failed",
+                                icon: "pi pi-times text-red-500",
+                            },
+                            children: [
+                                {
+                                    key: "1.1.1.1.1", data: {
+                                        function: "someFunction()",
+                                        status: "Queued",
+                                        icon: "pi pi-spinner pi-spin",
+                                    },
+                                    children: [
+                                        {
+                                            key: "1.1.1.1.2", data: {
+                                                function: "someFunction()",
+                                                status: "Running",
+                                                icon: "pi pi-cog pi-spin text-blue-500",
+                                            },
+                                            children: [{
+                                                key: "1.1.1.1.3", data: {
+                                                    function: "someFunction()",
+                                                    status: "Successful",
+                                                    icon: "pi pi-check text-green-500",
+                                                },
+                                            }]
+                                        }
+                                    ]
+                                },
+                            ],
                         },
                     ],
                 },
@@ -87,7 +149,7 @@ const treeEvents = ref({
     ],
 });
 
-let timelineEvents = ref([
+let timelineEvents = ref<OrganizationChartNode["data"]>([
     {
         status: "Queued",
         date: "2021-01-01",
