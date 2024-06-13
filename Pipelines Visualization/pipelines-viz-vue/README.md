@@ -39,5 +39,9 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 <div align="center">
 <h2>Design</h2>
+<h4>Prototype #1</h4>
 <img src="./git-assets/pipelines-viz-vue-page.png" alt="Pipelines Visualization with Nuxt 3">
+<h4>Prototype #2</h4>
+<img src="./git-assets/pipeline-viz-vue-tree.png" alt="Pipelines Visualization with Nuxt 3 (Tree)">
 </div>
+cd 
